@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:instagram_clone/data/models/videocallModel.dart';
-import 'package:instagram_clone/features/authentication/controllers/logincontroller.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
-import 'package:instagram_clone/features/authentication/presentation/screens/loginscreen.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 import 'package:instagram_clone/features/personalization/controllers/webRtcVideoController.dart';
 import 'package:instagram_clone/features/personalization/data/repositories/userrepository.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postuploader.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/profileimagewidget.dart';
 import 'package:instagram_clone/features/personalization/screens/SearchScreen/searchScreen2.dart';
-import 'package:instagram_clone/features/personalization/screens/message/incomingCallScreen.dart';
-import 'package:instagram_clone/features/personalization/screens/message/videocall.dart';
 import 'package:instagram_clone/features/personalization/screens/message/webrtcVideoScreen.dart';
 import 'package:instagram_clone/utils/constants/colors.dart';
-import 'package:instagram_clone/utils/constants/enums.dart';
 import 'package:instagram_clone/utils/constants/icons.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 import 'Addcontentscreen/addcontentscreen.dart';
@@ -24,7 +17,7 @@ import 'ProfileScreen/profilescreen.dart';
 import 'ReelScreen/reelscreen.dart';
 
 class NavigationBarScreen extends StatelessWidget {
-  NavigationBarScreen({super.key});
+  const NavigationBarScreen({super.key});
   @override
   Widget build(BuildContext context) {
     final NavigationBarController navigationBarController =
@@ -97,8 +90,8 @@ class NavigationBarController extends GetxController {
   RxInt selectedIndex = 0.obs;
   final screens = [
     HomeScreen(),
-    Searchscreen2(),
-    UploadMenu(),
+    const Searchscreen2(),
+    const UploadMenu(),
     ReelScreen(),
     ProfileScreen(),
   ];
@@ -178,7 +171,7 @@ void showIncomingCallScreen(BuildContext context, VideoCallModel videoCall) {
   showGeneralDialog(
       context: context,
       pageBuilder: (context, anim1, anim2) {
-        return Container(
+        return SizedBox(
           width: AppHelperFunctions.screenWidth(context),
           height: 400,
           child: FutureBuilder(
@@ -186,29 +179,29 @@ void showIncomingCallScreen(BuildContext context, VideoCallModel videoCall) {
                   .fetchUserWithGivenId(videoCall.initiatorId),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
-                  return Text("error fetching callerDetails");
+                  return const Text("error fetching callerDetails");
                 }
                 if (!snapshot.hasData) {
-                  return Text("error no data");
+                  return const Text("error no data");
                 }
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
                 final caller = snapshot.data;
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Incoming Call",
+                    const Text("Incoming Call",
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CircleAvatar(
                         radius: 50,
                         backgroundImage:
                             NetworkImage(caller!.photoUrl)), // Caller image
-                    SizedBox(height: 20),
-                    Text(caller.name, style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
+                    Text(caller.name, style: const TextStyle(fontSize: 20)),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -221,11 +214,11 @@ void showIncomingCallScreen(BuildContext context, VideoCallModel videoCall) {
                                     videoCall.initiatorId, "accepted");
                             Navigator.of(context).pop();
                           },
-                          child: Icon(Icons.call, color: Colors.white),
                           style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
+                            shape: const CircleBorder(),
                             backgroundColor: Colors.green,
                           ),
+                          child: const Icon(Icons.call, color: Colors.white),
                         ),
                         ElevatedButton(
                           onPressed: () async {
@@ -234,11 +227,11 @@ void showIncomingCallScreen(BuildContext context, VideoCallModel videoCall) {
                                     videoCall.initiatorId, "ended");
                             Navigator.of(context).pop();
                           },
-                          child: Icon(Icons.call_end, color: Colors.white),
                           style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
+                            shape: const CircleBorder(),
                             backgroundColor: Colors.red,
                           ),
+                          child: const Icon(Icons.call_end, color: Colors.white),
                         ),
                       ],
                     )

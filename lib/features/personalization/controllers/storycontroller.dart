@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/data/models/storymodel.dart';
 import 'package:instagram_clone/data/repositories/storyrepository.dart';
-import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 
 class Storycontroller extends GetxController {
   static Storycontroller get instance => Get.find();

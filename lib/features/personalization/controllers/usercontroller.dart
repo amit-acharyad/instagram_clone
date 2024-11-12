@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -62,7 +61,7 @@ class UserController extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }

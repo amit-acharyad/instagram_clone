@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:instagram_clone/common/widgets/myappbar.dart';
-import 'package:instagram_clone/data/models/notificationModel.dart';
-import 'package:instagram_clone/features/calendar/view/calendar.dart';
 import 'package:instagram_clone/features/personalization/controllers/messagecontroller.dart';
 import 'package:instagram_clone/features/personalization/controllers/notificationController.dart';
 import 'package:instagram_clone/features/personalization/screens/message/messagescreen.dart';
@@ -37,7 +34,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         fit: BoxFit.contain,
       ),
       actions: [
-        IconButton(onPressed: ()=>Get.to(CalendarScreen()), icon: Icon(Icons.calendar_month)),
         StreamBuilder(
             stream: notificationController.notificationStreams,
             builder: (context, snapshot) {
@@ -85,7 +81,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 )),
             Obx((){
               if(messageController.count.value==0){
-                return SizedBox();
+                return const SizedBox();
               }
               else {return Positioned(
                           right: 0,

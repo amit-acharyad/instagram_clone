@@ -8,12 +8,12 @@ class StoriesShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 130,
       child: Padding(
         padding: const EdgeInsets.only(left: AppSizes.spaceBtwItems),
         child: ListView.separated(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             itemBuilder: ((context, index) {

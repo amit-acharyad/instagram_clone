@@ -8,7 +8,6 @@ import 'package:instagram_clone/utils/constants/imagestrings.dart';
 import 'package:instagram_clone/utils/constants/sizes.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 
-import '../../../../utils/constants/colors.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
@@ -21,14 +20,14 @@ class SignupScreen extends StatelessWidget {
           child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(AppSizes.defaultSpace),
-          child: Container(
+          child: SizedBox(
             height: AppHelperFunctions.screenHeight(context),
             child: Column(
               children: [
                 isDark
                     ? Image.asset(AppImageStrings.whiteInstaLogo)
                     : Image.asset(AppImageStrings.darkInstaLogo),
-                SizedBox(
+                const SizedBox(
                   height: AppSizes.defaultSpace,
                 ),
                 Form(
@@ -37,22 +36,22 @@ class SignupScreen extends StatelessWidget {
                       children: [
                         TextFormField(
                           controller: _signUpController.nameController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               prefixIcon: Icon(FontAwesomeIcons.user),
                               floatingLabelBehavior: FloatingLabelBehavior.never,
                               labelText: 'Full Name'),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: AppSizes.spaceBtwInputFields,
                         ),
                         TextFormField(
                           controller: _signUpController.emailController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               prefixIcon: Icon(Icons.email),
                               floatingLabelBehavior: FloatingLabelBehavior.never,
                               labelText: 'E-mail'),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: AppSizes.spaceBtwInputFields,
                         ),
                         Obx(
@@ -73,7 +72,7 @@ class SignupScreen extends StatelessWidget {
                                                   _signUpController
                                                       .toggleShowHide();
                                                 },
-                                                child: Text(
+                                                child: const Text(
                                                   'Show',
                                                   style: TextStyle(
                                                       color: Colors.white,
@@ -87,7 +86,7 @@ class SignupScreen extends StatelessWidget {
                                                   _signUpController
                                                       .toggleShowHide();
                                                 },
-                                                child: Text(
+                                                child: const Text(
                                                   'Hide',
                                                   style: TextStyle(
                                                       color: Colors.white,
@@ -99,7 +98,7 @@ class SignupScreen extends StatelessWidget {
                         ),
                       ],
                     )),
-                SizedBox(
+                const SizedBox(
                   height: AppSizes.defaultSpace,
                 ),
                 SizedBox(
@@ -108,8 +107,8 @@ class SignupScreen extends StatelessWidget {
                         onPressed: () async {
                           await _signUpController.signUpWithEmailPassword();
                         },
-                        child: Text('Sign Up'))),
-                SizedBox(height: AppSizes.spaceBtwItems),
+                        child: const Text('Sign Up'))),
+                const SizedBox(height: AppSizes.spaceBtwItems),
                 Row(
                   children: [
                     Expanded(
@@ -125,7 +124,7 @@ class SignupScreen extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: InkWell(
-                        onTap: () => Get.to(Loginscreen()),
+                        onTap: () => Get.to(const Loginscreen()),
                         child: Text(
                           AppLocalizations.of(context).login,
                           style: Theme.of(context)
@@ -137,7 +136,7 @@ class SignupScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
               
               
               ],

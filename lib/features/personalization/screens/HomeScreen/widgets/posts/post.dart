@@ -1,27 +1,17 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/common/styles/readmoreless.dart';
-import 'package:instagram_clone/common/widgets/searchbar.dart';
-import 'package:instagram_clone/common/widgets/shimmer.dart';
 import 'package:instagram_clone/data/models/postmodel.dart';
 import 'package:instagram_clone/features/personalization/controllers/commentController.dart';
 import 'package:instagram_clone/features/personalization/controllers/likecontroller.dart';
-import 'package:instagram_clone/features/personalization/controllers/postcontroller.dart';
-import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
-import 'package:instagram_clone/features/personalization/data/repositories/userrepository.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postuploader.dart';
-import 'package:instagram_clone/localizations/app_localizations.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/comments/commentsection.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/like.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postphoto.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/sharepost.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/profileimagewidget.dart';
 import 'package:instagram_clone/utils/constants/colors.dart';
-import 'package:instagram_clone/utils/constants/enums.dart';
 import 'package:instagram_clone/utils/constants/sizes.dart';
-import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 
 import '../comments/commentbox.dart';
 
@@ -38,7 +28,7 @@ class Post extends StatelessWidget {
     final LikeController likeController = Get.put(
         LikeController(postId: post.postId),
         tag: UniqueKey().toString());
-    final LikeButtonController _likeButtonController = Get.put(
+    final LikeButtonController likeButtonController = Get.put(
         LikeButtonController(
             likeController: likeController, postId: post.postId),
         tag: UniqueKey().toString());
@@ -52,39 +42,39 @@ class Post extends StatelessWidget {
     });
     return Container(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Divider(),
+        const Divider(),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: PostUploaderDetails(userId: post.userId,time: post.postTime,),
         ),
         PostPhoto(
           photo: post.postImage,
-          likeButtonController: _likeButtonController,
+          likeButtonController: likeButtonController,
         ),
         Row(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizes.spaceBtwItems),
+              padding: const EdgeInsets.symmetric(horizontal: AppSizes.spaceBtwItems),
               child: LikeButton(
-                likeButtonController: _likeButtonController,
+                likeButtonController: likeButtonController,
               ),
             ),
             IconButton(
-              icon: Icon(FontAwesomeIcons.comment),
+              icon: const Icon(FontAwesomeIcons.comment),
               onPressed: () => _showCommentBottomSheet(context),
             ),
-            SizedBox(
+            const SizedBox(
               width: AppSizes.spaceBtwItems,
             ),
             IconButton(
                 onPressed: () => _showSharePostBottomSheer(context),
-                icon: Icon(FontAwesomeIcons.paperPlane)),
-            Spacer(),
+                icon: const Icon(FontAwesomeIcons.paperPlane)),
+            const Spacer(),
             PostSliderDots(
               postNumber: 1,
             ),
-            Spacer(),
-            Padding(
+            const Spacer(),
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSizes.spaceBtwItems),
               child: Icon(FontAwesomeIcons.bookmark),
             )
@@ -165,7 +155,7 @@ class PostSliderDots extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return postNumber.toInt() == 1
-        ? SizedBox()
+        ? const SizedBox()
         : SizedBox(
             width: 80,
             height: 50,
@@ -193,7 +183,7 @@ class PostSliderDots extends StatelessWidget {
                   }
                   scrollController.animateTo(
                     scrollOffset,
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
                 }

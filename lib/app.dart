@@ -5,7 +5,6 @@ import 'package:instagram_clone/features/authentication/presentation/screens/log
 import 'package:instagram_clone/localizations/app_localizations.dart';
 import 'package:instagram_clone/features/personalization/screens/ProfileScreen/settings.dart';
 import 'package:instagram_clone/features/personalization/screens/navigationscreen.dart';
-import 'package:instagram_clone/utils/theme/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatelessWidget {
@@ -23,13 +22,13 @@ class App extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate
         ],
-        supportedLocales: [Locale('en', 'US'), Locale('ne', 'NP')],
+        supportedLocales: const [Locale('en', 'US'), Locale('ne', 'NP')],
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         home: GetStorage().read('isLoggedIn')
-            ? NavigationBarScreen()
-            : Loginscreen());
+            ? const NavigationBarScreen()
+            : const Loginscreen());
   }
 }

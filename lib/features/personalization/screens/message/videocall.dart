@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
-import 'package:instagram_clone/features/personalization/data/repositories/userrepository.dart';
 
 class VideoCall extends StatefulWidget {
   const VideoCall({super.key});
@@ -29,6 +27,7 @@ class _VideoCallState extends State<VideoCall> {
       ]);
   final VideoCallController videoCallController =
       Get.put(VideoCallController());
+  @override
   void initState() {
     super.initState();
     initAgora();
@@ -39,6 +38,7 @@ class _VideoCallState extends State<VideoCall> {
     await client.initialize();
   }
 
+  @override
   void dispose() {
     videoCallController.endCall();
     super.dispose();
@@ -61,7 +61,7 @@ class _VideoCallState extends State<VideoCall> {
               Obx(() => Text(
                   "${videoCallController.callDuration.value.inMinutes}:${videoCallController.callDuration.value.inSeconds}"))
             ],
-            enabledButtons: [
+            enabledButtons: const [
               BuiltInButtons.callEnd,
               BuiltInButtons.switchCamera,
               BuiltInButtons.toggleMic
@@ -86,7 +86,7 @@ class VideoCallController extends GetxController {
 
   void startCall() {
     startTime = DateTime.now();
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       callDuration.value = DateTime.now().difference(startTime!);
       print(callDuration.value);
     });

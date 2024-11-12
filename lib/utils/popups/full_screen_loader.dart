@@ -22,9 +22,9 @@ class AppFullScreenLoader {
           color: AppHelperFunctions.isDarkMode(Get.context!) ? AppColors.dark : AppColors.white,
           width: double.infinity,
           height: double.infinity,
-          child: Column(
+          child: const Column(
             children: [
-              const SizedBox(height: 250), // Adjust the spacing as needed
+              SizedBox(height: 250), // Adjust the spacing as needed
               Center(child: CircularProgressIndicator())
             ],
           ),

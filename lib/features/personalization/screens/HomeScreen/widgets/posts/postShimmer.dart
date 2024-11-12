@@ -5,14 +5,14 @@ import '../../../../../../common/widgets/shimmer.dart';
 import '../../../../../../utils/constants/sizes.dart';
 
 class PostShimmer extends StatelessWidget {
-   PostShimmer({super.key});
+   const PostShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: AppSizes.spaceBtwItems),
       child: ListView.separated(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           itemBuilder: ((context, index) {

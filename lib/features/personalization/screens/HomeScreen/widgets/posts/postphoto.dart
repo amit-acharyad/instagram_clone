@@ -31,7 +31,7 @@ class _PostPhotoState extends State<PostPhoto>
 
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 3000),
+      duration: const Duration(milliseconds: 3000),
     );
 
     _scaleAnimation = Tween<double>(begin: 0, end: 1).animate(
@@ -123,7 +123,7 @@ class _PostPhotoState extends State<PostPhoto>
                       opacity: _opacityAnimation.value,
                       child: ShaderMask(
                         shaderCallback: (Rect bounds) {
-                          return LinearGradient(
+                          return const LinearGradient(
                             colors: [
                               Color(0xFFF9CE34),
                               Color(0xFFEE2A7B),
@@ -137,7 +137,7 @@ class _PostPhotoState extends State<PostPhoto>
                             end: Alignment.topRight,
                           ).createShader(bounds);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.favorite,
                           color: Colors.white,
                           size: 100,

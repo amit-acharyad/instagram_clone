@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:instagram_clone/common/widgets/myappbar.dart';
-import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/features/personalization/controllers/messagecontroller.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 import 'package:instagram_clone/features/personalization/data/repositories/userrepository.dart';
@@ -10,7 +8,6 @@ import 'package:instagram_clone/localizations/app_localizations.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/story/stories.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 
-import '../../../../common/widgets/searchbar.dart';
 import '../../../../utils/constants/sizes.dart';
 import 'message_tile.dart';
 
@@ -26,14 +23,14 @@ class MessageScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Get.to(NavigationBarScreen());
+              Get.to(const NavigationBarScreen());
             },
             icon: Icon(
               Icons.arrow_back,
               color: color,
             )),
         title: Text(
-          "${UserController.instance.user.value.userName!} ",
+          "${UserController.instance.user.value.userName} ",
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
@@ -44,11 +41,11 @@ class MessageScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // AppSearchbar(),
-              SizedBox(
+              const SizedBox(
                 height: AppSizes.spaceBtwItems,
               ),
               Stories(),
-              SizedBox(
+              const SizedBox(
                 height: AppSizes.spaceBtwItems,
               ),
               Row(
@@ -57,7 +54,7 @@ class MessageScreen extends StatelessWidget {
                     AppLocalizations.of(context).messages,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     AppLocalizations.of(context).requests,
                     style: Theme.of(context)
@@ -78,10 +75,10 @@ class MessageScreen extends StatelessWidget {
                       );
                     }
                     if (snapshot.hasError) {
-                      return Text("Error");
+                      return const Text("Error");
                     }
                     if (!snapshot.hasData) {
-                      return Text("No data");
+                      return const Text("No data");
                     }
 
                     final dataSet = snapshot.data!.toSet();
@@ -99,17 +96,17 @@ class MessageScreen extends StatelessWidget {
                                 "user id od current chatting friend is $user");
                             return FutureBuilder(
                                 future: UserRepository.instance
-                                    .fetchUserWithGivenId(user!),
+                                    .fetchUserWithGivenId(user),
                                 builder: (context, snapshot) {
                                   if (!snapshot.hasData) {
-                                    return Text("No data");
+                                    return const Text("No data");
                                   }
                                   if (snapshot.hasError) {
-                                    return Text("Error");
+                                    return const Text("Error");
                                   }
                                   if (snapshot.connectionState ==
                                       ConnectionState.waiting) {
-                                    return CircularProgressIndicator();
+                                    return const CircularProgressIndicator();
                                   }
                                   final user = snapshot.data;
                                   print("user name is ${user!.name}");
@@ -118,14 +115,14 @@ class MessageScreen extends StatelessWidget {
                                           .getMessagesFromUser(user.id),
                                       builder: (context, snapshot) {
                                         if (!snapshot.hasData) {
-                                          return Text("No data");
+                                          return const Text("No data");
                                         }
                                         if (snapshot.connectionState ==
                                             ConnectionState.waiting) {
-                                          return Text("Loading");
+                                          return const Text("Loading");
                                         }
                                         if (snapshot.hasError) {
-                                          return Text("error");
+                                          return const Text("error");
                                         }
                                         final latestMessage =
                                             snapshot.data!.last;

@@ -4,16 +4,11 @@ import 'package:instagram_clone/features/personalization/controllers/postcontrol
 import 'package:instagram_clone/features/personalization/controllers/storycontroller.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/post.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postShimmer.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/story/storiesshimmer.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/story/storycontent.dart';
 import 'package:instagram_clone/features/personalization/screens/message/incomingCallScreen.dart';
-import 'package:instagram_clone/utils/constants/sizes.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 
-import '../../../../data/models/videocallModel.dart';
 import '../../../authentication/data/authenticationrepository.dart';
 import '../../controllers/webRtcVideoController.dart';
-import '../navigationscreen.dart';
 import 'widgets/homeappbar.dart';
 import 'widgets/story/stories.dart';
 
@@ -54,18 +49,18 @@ class HomeScreen extends StatelessWidget {
                 );
               } else {
                 print("returned sized box");
-                return SizedBox();
+                return const SizedBox();
               }
             }),
 
             Stories(),
             //Post Section
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Obx(() {
               if (postcontroller.isLoadingPosts.value) {
-                return PostShimmer();
+                return const PostShimmer();
               }
               return ListView.builder(
                   scrollDirection: Axis.vertical,

@@ -36,12 +36,12 @@ class UserModel {
     if (documentQuerySnapshot.exists) {
       final data = documentQuerySnapshot.data();
       return UserModel(
-          id: data?['id'],
-          bio: data?['bio'],
-          name: data?['name'],
-          gender: data?['gender'],
-          userName: data?['userName'],
-          photoUrl: data?['photoUrl']);
+          id: data['id'],
+          bio: data['bio'],
+          name: data['name'],
+          gender: data['gender'],
+          userName: data['userName'],
+          photoUrl: data['photoUrl']);
     } else {
       return UserModel.empty();
     }

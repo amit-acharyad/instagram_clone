@@ -3,12 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:instagram_clone/features/authentication/controllers/signupcontroller.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/features/authentication/presentation/screens/loginscreen.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
-import 'package:instagram_clone/utils/popups/full_screen_loader.dart';
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
@@ -49,7 +46,7 @@ class LoginController extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     } finally {
       loggingIn.value = false;
@@ -67,7 +64,7 @@ class LoginController extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }
@@ -78,7 +75,7 @@ class LoginController extends GetxController {
       print("LogginOut value is ${logginOut.value}");
       await authenticationRepository.logout();
       // await SystemNavigator.pop();
-      Get.offAll(Loginscreen());
+      Get.offAll(const Loginscreen());
       print("Still ${logginOut.value}");
     } on FirebaseAuthException catch (e) {
       throw AppFirebaseAuthException(e.code);
@@ -86,7 +83,7 @@ class LoginController extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     } finally {
       logginOut.value = false;
@@ -102,7 +99,7 @@ class LoginController extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }
@@ -117,7 +114,7 @@ class LoginController extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }

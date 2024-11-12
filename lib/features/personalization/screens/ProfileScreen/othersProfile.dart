@@ -1,10 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:instagram_clone/common/widgets/shimmer.dart';
 import 'package:instagram_clone/data/repositories/postrepository.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
@@ -24,7 +21,7 @@ import '../ReelScreen/reelscreen.dart';
 import '../ReelScreen/reelvideocontroller.dart';
 
 class Profile extends StatelessWidget {
-  Profile({super.key, required this.userModel});
+  const Profile({super.key, required this.userModel});
   final UserModel userModel;
 
   @override
@@ -37,7 +34,7 @@ class Profile extends StatelessWidget {
     final bool isDark = AppHelperFunctions.isDarkMode(context);
     final color = isDark ? AppColors.white : AppColors.dark;
     List tabIcons = [
-      Icon(Icons.article),
+      const Icon(Icons.article),
       AppIcons.reelIcon(color),
     ];
     return DefaultTabController(
@@ -259,7 +256,7 @@ class Profile extends StatelessWidget {
                             child: OutlinedButton(
                                 onPressed: () =>
                                     Get.to(ChatScreen(user: userModel)),
-                                child: Text("Message")),
+                                child: const Text("Message")),
                           ),
                         ],
                       ),
@@ -272,7 +269,7 @@ class Profile extends StatelessWidget {
                               (index) => Tab(
                                     child: tabIcons[index],
                                   ))),
-                      Container(
+                      SizedBox(
                         height: 500,
                         width: 400,
                         child: TabBarView(children: [
@@ -314,13 +311,13 @@ class PostTabBar extends StatelessWidget {
           if (!snapshot.hasData) {
             return const Text("No Posts");
           }
-          return Container(
+          return SizedBox(
               height: 400,
               width: 200,
               child: GridView.builder(
-                  physics: AlwaysScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   itemCount: snapshot.data!.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3),
                   itemBuilder: (context, index) {
                     final post = snapshot.data?[index];
@@ -340,7 +337,7 @@ class ReelTabBar extends StatelessWidget {
   String userId;
   @override
   Widget build(BuildContext context) {
-    print("reels of user ${userId}");
+    print("reels of user $userId");
     return FutureBuilder(
         future: Reelcontroller.instance.fetchReelsOfUser(userId),
         builder: (context, snapshot) {
@@ -357,12 +354,12 @@ class ReelTabBar extends StatelessWidget {
           }
           final data = snapshot.data;
           print("data of reels is${data!.first.uploaderName}");
-          return Container(
+          return SizedBox(
               height: 400,
               width: 200,
               child: GridView.builder(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  itemCount: data!.length,
+                  itemCount: data.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3),
                   itemBuilder: (context, index) {

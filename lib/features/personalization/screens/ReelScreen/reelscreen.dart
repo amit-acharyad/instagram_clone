@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:instagram_clone/features/authentication/presentation/screens/loginscreen.dart';
 import 'package:instagram_clone/features/personalization/controllers/reelcontroller.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postuploader.dart';
 import 'package:instagram_clone/features/personalization/screens/ReelScreen/reelvideocontroller.dart';
@@ -38,7 +37,7 @@ class ReelScreen extends StatelessWidget {
 }
 
 class SingleReelScreen extends StatelessWidget {
-  SingleReelScreen(
+  const SingleReelScreen(
       {super.key,
       required this.reelVideoController,
       required this.uploaderName});
@@ -56,13 +55,13 @@ class SingleReelScreen extends StatelessWidget {
                   onTap: () {
                     reelVideoController.playpause();
                   },
-                  child: Container(
+                  child: SizedBox(
                     height: AppHelperFunctions.screenHeight(context),
                     width: AppHelperFunctions.screenWidth(context),
                     child: VideoPlayer(reelVideoController.videoPlayerController),
                   ),
                 )
-              : Center(
+              : const Center(
                   child: CircularProgressIndicator(),
                 )),
           Positioned(
@@ -72,14 +71,14 @@ class SingleReelScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButton(
-                      onPressed: () {}, icon: Icon(Icons.favorite_outline)),
-                  Text("Likes"),
+                      onPressed: () {}, icon: const Icon(Icons.favorite_outline)),
+                  const Text("Likes"),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.comment),
+                    icon: const Icon(Icons.comment),
                   ),
-                  Text("112"),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.share))
+                  const Text("112"),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.share))
                 ],
               )),
           Positioned(
@@ -88,12 +87,12 @@ class SingleReelScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  PostUploader(size: 20, image: ''),
-                  SizedBox(
+                  const PostUploader(size: 20, image: ''),
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(uploaderName),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   SizedBox(

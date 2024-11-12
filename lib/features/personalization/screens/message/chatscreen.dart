@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:instagram_clone/data/models/videocallModel.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/comments/commentbox.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postuploader.dart';
 import 'package:instagram_clone/features/personalization/screens/message/videocall.dart';
 import 'package:instagram_clone/features/personalization/screens/message/webrtcVideoScreen.dart';
@@ -45,12 +44,12 @@ class ChatScreen extends StatelessWidget {
                 onPressed: () {
                   Get.to(WebRtcVideoScreen(receiverId: user?.id,videoCall: VideoCallModel.empty(),));
                 },
-                icon: Icon(Icons.call)),
+                icon: const Icon(Icons.call)),
             IconButton(
                 onPressed: () {
-                  Get.to(VideoCall());
+                  Get.to(const VideoCall());
                 },
-                icon: Icon(Icons.video_call_rounded))
+                icon: const Icon(Icons.video_call_rounded))
           ],
         ),
         body: Padding(
@@ -63,16 +62,16 @@ class ChatScreen extends StatelessWidget {
                   return Text("Error ${snapshot.error.toString()}");
                 }
                 if (!snapshot.hasData) {
-                  return Text("NO data");
+                  return const Text("NO data");
                 }
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 return ListView.builder(
                     itemCount: snapshot.data!.length,
                     shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     itemBuilder: (context, index) {
                       final message = snapshot.data?[index];
                       final isOwn = message!.senderId ==
@@ -119,7 +118,7 @@ class ChatScreen extends StatelessWidget {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue, // Change the border color when focused
                     width: 2.0,
                   ),
@@ -166,10 +165,10 @@ class ChatMessageTile extends StatelessWidget {
                 ? Colors.lightBlue.withOpacity(0.8)
                 : AppColors.darkGrey, // Adjust opacity as needed
             borderRadius: BorderRadius.only(
-              topLeft: isOwn ? Radius.circular(10) : Radius.zero,
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: isOwn ? Radius.zero : Radius.circular(10),
+              topLeft: isOwn ? const Radius.circular(10) : Radius.zero,
+              topRight: const Radius.circular(10),
+              bottomLeft: const Radius.circular(10),
+              bottomRight: isOwn ? Radius.zero : const Radius.circular(10),
             ),
             boxShadow: [
               // Optional subtle shadow for depth
@@ -178,7 +177,7 @@ class ChatMessageTile extends StatelessWidget {
                     .withOpacity(0.2), // Adjust shadow color and opacity
                 spreadRadius: 1, // Adjust spread for softer shadow
                 blurRadius: 3, // Adjust blur for smoother shadow
-                offset: Offset(0, 2), // Adjust offset for shadow direction
+                offset: const Offset(0, 2), // Adjust offset for shadow direction
               )
             ],
           ),

@@ -1,19 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/common/widgets/myappbar.dart';
 import 'package:instagram_clone/data/models/notificationModel.dart';
 import 'package:instagram_clone/data/repositories/postrepository.dart';
-import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
 import 'package:instagram_clone/features/personalization/data/repositories/userrepository.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/post.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postuploader.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/profileimagewidget.dart';
 import 'package:instagram_clone/features/personalization/screens/ProfileScreen/othersProfile.dart';
 import 'package:instagram_clone/utils/constants/colors.dart';
-import 'package:instagram_clone/utils/constants/enums.dart';
 
 import '../../../../common/styles/dateTimeformatter.dart';
 import '../../../../data/models/postmodel.dart';
@@ -31,17 +27,17 @@ class NotificationTile extends StatelessWidget {
         future: userRepository.fetchUserWithGivenId(notificationModel!.userId),
         builder: (context, snapshot) {
           if (snapshot.data == null) {
-            return Text("No data");
+            return const Text("No data");
           }
           if (!snapshot.hasData) {
             return const Text("No Data");
           }
           if (snapshot.hasError) {
-            return Text('Error');
+            return const Text('Error');
           }
           if (snapshot.connectionState == ConnectionState.waiting ||
               snapshot.connectionState == ConnectionState.none) {
-            return Text("Loading");
+            return const Text("Loading");
           }
           return ListTile(
             leading: PostUploader(size: 10, image: snapshot.data!.photoUrl),
@@ -63,7 +59,7 @@ class NotificationTile extends StatelessWidget {
                           .bodySmall!
                           .copyWith(color: AppColors.darkerGrey),
                     )),
-                Spacer(),
+                const Spacer(),
                 Flexible(
                     flex: 2,
                     child: Text(
@@ -83,7 +79,7 @@ class NotificationTile extends StatelessWidget {
                       if (snapshot.connectionState == ConnectionState.waiting ||
                           !snapshot.hasData ||
                           snapshot.data == null) {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       }
                       post = snapshot.data!;
                       return Container(
@@ -109,7 +105,7 @@ class NotificationTile extends StatelessWidget {
             onTap: () {
               if (notificationModel!.type == "comment") {
                 Get.to(Scaffold(
-                  appBar: MyAppBar(showBackArrow: true),
+                  appBar: const MyAppBar(showBackArrow: true),
                   body: SafeArea(
                     child: Post(
                       post: post,

@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/data/models/postmodel.dart';
-import 'package:instagram_clone/data/repositories/followrepository.dart';
-import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/features/personalization/controllers/postcontroller.dart';
 import 'package:instagram_clone/features/personalization/controllers/reelcontroller.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
@@ -13,15 +10,12 @@ import 'package:instagram_clone/features/personalization/screens/HomeScreen/widg
 import 'package:instagram_clone/features/personalization/screens/ReelScreen/reelscreen.dart';
 import 'package:instagram_clone/features/personalization/screens/ReelScreen/reelvideocontroller.dart';
 import 'package:instagram_clone/localizations/app_localizations.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/profileimagewidget.dart';
 import 'package:instagram_clone/features/personalization/screens/ProfileScreen/editprofile.dart';
 import 'package:instagram_clone/features/personalization/screens/ProfileScreen/settings.dart';
 import 'package:instagram_clone/utils/constants/colors.dart';
-import 'package:instagram_clone/utils/constants/enums.dart';
 import 'package:instagram_clone/utils/constants/icons.dart';
 import 'package:instagram_clone/utils/constants/sizes.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../../data/models/followmodel.dart';
 
@@ -34,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
     final bool isDark = AppHelperFunctions.isDarkMode(context);
     final color = isDark ? AppColors.white : AppColors.dark;
     List tabIcons = [
-      Icon(Icons.article),
+      const Icon(Icons.article),
       AppIcons.reelIcon(color),
     ];
     return DefaultTabController(
@@ -77,13 +71,13 @@ class ProfileScreen extends StatelessWidget {
                     FirebaseFirestore.instance.collection("Follow").snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Text("Error");
+                    return const Text("Error");
                   }
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text("Loading");
+                    return const Text("Loading");
                   }
                   if (!snapshot.hasData) {
-                    return Text("No data");
+                    return const Text("No data");
                   }
                   final follow = snapshot.data!.docs
                       .map((snapshot) => FollowModel.fromSnapshot(snapshot))
@@ -181,14 +175,14 @@ class ProfileScreen extends StatelessWidget {
                         userController.user.value.name,
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: AppSizes.spaceBtwItems,
                       ),
                       Text(
                         userController.user.value.bio,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: AppSizes.spaceBtwItems,
                       ),
                       SizedBox(
@@ -200,7 +194,7 @@ class ProfileScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.titleSmall,
                             )),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: AppSizes.spaceBtwItems,
                       ),
                       TabBar(
@@ -209,7 +203,7 @@ class ProfileScreen extends StatelessWidget {
                               (index) => Tab(
                                     child: tabIcons[index],
                                   ))),
-                      Container(
+                      SizedBox(
                         height: 500,
                         width: 400,
                         child: TabBarView(children: [
@@ -232,14 +226,14 @@ class PostTabBar extends StatelessWidget {
   List<PostModel> posts;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: 400,
         width: 200,
         child: GridView.builder(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             itemCount: posts.length,
             gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
             itemBuilder: (context, index) {
               final post = posts[index];
               return Container(
@@ -256,14 +250,14 @@ class ReelTabBar extends StatelessWidget {
   final Reelcontroller reelcontroller = Reelcontroller.instance;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: 400,
         width: 200,
         child: GridView.builder(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             itemCount: reelcontroller.ownReels.length,
             gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
             itemBuilder: (context, index) {
               print("no of reels is ${reelcontroller.ownReels.length}");
               final reel = reelcontroller.ownReels[index];
@@ -274,17 +268,17 @@ class ReelTabBar extends StatelessWidget {
                   future: reelcontroller.generateThumbnail(reel.reelUrl),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      return Text("no thumbNail");
+                      return const Text("no thumbNail");
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return SizedBox(
+                      return const SizedBox(
                         height: 80,
                         width: 60,
                         child: CircularProgressIndicator(),
                       );
                     }
                     if (snapshot.hasError) {
-                      return Text("Error");
+                      return const Text("Error");
                     }
                     return InkWell(
                         onTap: () => Get.to(SingleReelScreen(

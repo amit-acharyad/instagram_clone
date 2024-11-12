@@ -5,6 +5,7 @@ class ReadMoreLess extends StatelessWidget {
   ReadMoreLess({super.key, required this.data});
 
   String data;
+  @override
   Widget build(BuildContext context) {
     return ReadMoreText(
       data,

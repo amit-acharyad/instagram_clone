@@ -6,6 +6,8 @@ import '../../utils/constants/sizes.dart';
 import '../../utils/helpers/helper_functions.dart';
 
 class AppSearchbar extends StatefulWidget {
+  const AppSearchbar({super.key});
+
   
   @override
   State<AppSearchbar> createState() => _SearchbarState();
@@ -23,7 +25,7 @@ class _SearchbarState extends State<AppSearchbar> {
         
         showCursor: false,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(AppSizes.xs),
+            contentPadding: const EdgeInsets.all(AppSizes.xs),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             disabledBorder: border,
             enabledBorder: border,
@@ -32,7 +34,7 @@ class _SearchbarState extends State<AppSearchbar> {
             filled: true,
             fillColor: isDark ? AppColors.darkerGrey : Colors.grey[200],
             
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.search,
               size: AppSizes.iconXs,
             ),

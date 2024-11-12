@@ -8,7 +8,6 @@ import 'package:instagram_clone/data/models/reelModel.dart';
 import 'package:instagram_clone/data/repositories/reelrepository.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/utils/popups/loaders.dart';
-import 'package:video_player/video_player.dart';
 
 class Reelcontroller extends GetxController {
   RxList<ReelModel> reels = <ReelModel>[].obs;

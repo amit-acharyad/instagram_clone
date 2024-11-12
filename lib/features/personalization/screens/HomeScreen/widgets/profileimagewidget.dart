@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/data/models/storymodel.dart';
 import 'package:instagram_clone/features/personalization/controllers/storycontroller.dart';
-import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/story/storycontent.dart';
 import 'package:instagram_clone/utils/constants/colors.dart';
 import 'package:instagram_clone/utils/constants/enums.dart';
@@ -15,7 +12,7 @@ import '../../../../../utils/helpers/helper_functions.dart';
 
 class ProfileImageWidget extends StatefulWidget {
   ProfileImageWidget(
-      {required this.size,
+      {super.key, required this.size,
       required this.storyStatus,
       required this.story,
       required this.yourStory});
@@ -62,7 +59,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
               color: color,
             ),
             child: Padding(
-                padding: EdgeInsets.all(2),
+                padding: const EdgeInsets.all(2),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius:
@@ -78,8 +75,8 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
     );
   }
 
-  BoxDecoration getBoxDecoration(StoryStatus _storyStatus) {
-    switch (_storyStatus) {
+  BoxDecoration getBoxDecoration(StoryStatus storyStatus) {
+    switch (storyStatus) {
       case (StoryStatus.expired):
         return const BoxDecoration(
             shape: BoxShape.circle, color: Colors.transparent);

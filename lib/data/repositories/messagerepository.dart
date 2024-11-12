@@ -1,20 +1,13 @@
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/data/models/messageModel.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
-import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MessageRepository extends GetxController {
   static MessageRepository messageRepository = Get.find();
   String currentUserId = AuthenticationRepository.instance.authUser!.uid;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   Future<void> sendMessage(String message, String receiverId) async {
     try {

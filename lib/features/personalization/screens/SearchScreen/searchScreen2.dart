@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/common/widgets/shimmer.dart';
 import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
@@ -64,7 +61,7 @@ class _Searchscreen2State extends State<Searchscreen2> {
                   .collection("Users")
                   .orderBy("userName")
                   .startAt([searchText])
-                  .endAt([searchText + '\uf8ff'])
+                  .endAt(['$searchText\uf8ff'])
                   .snapshots()
                   .map((users) => users.docs
                       .map((user) => UserModel.fromSnapshot(user))
@@ -76,10 +73,10 @@ class _Searchscreen2State extends State<Searchscreen2> {
                   );
                 }
                 if (snapshot.hasError) {
-                  return Text("Error");
+                  return const Text("Error");
                 }
                 if (!snapshot.hasData) {
-                  return Text("no users");
+                  return const Text("no users");
                 }
                 return ListView.builder(
                     shrinkWrap: true,
@@ -90,8 +87,8 @@ class _Searchscreen2State extends State<Searchscreen2> {
                       return ListTile(
                         leading: PostUploader(size: 30, image: user!.photoUrl),
                         onTap: ()=>Get.to(Profile(userModel: user,)),
-                        title: Text("${user!.name}"),
-                        subtitle: Text("${user.userName}"),
+                        title: Text(user.name),
+                        subtitle: Text(user.userName),
                       );
                     });
               })

@@ -1,15 +1,10 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:instagram_clone/data/models/notificationModel.dart';
 import 'package:instagram_clone/data/repositories/notifcationRepository.dart';
-import 'package:instagram_clone/features/personalization/data/repositories/userrepository.dart';
 import 'package:instagram_clone/localNotification.dart';
-import 'package:rxdart/rxdart.dart';
 
 class NotificationController extends GetxController {
   final NotifcationRepository notifcationRepository = NotifcationRepository();

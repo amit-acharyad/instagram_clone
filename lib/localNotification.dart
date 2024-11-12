@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
@@ -8,11 +7,8 @@ import 'package:instagram_clone/data/models/notificationModel.dart';
 import 'package:instagram_clone/features/personalization/screens/message/incomingCallScreen.dart';
 import 'package:instagram_clone/features/personalization/screens/navigationscreen.dart';
 import 'package:instagram_clone/utils/popups/loaders.dart';
-import 'package:workmanager/workmanager.dart';
 import 'data/models/videocallModel.dart';
-import 'features/personalization/data/models/usermodel.dart';
 import 'features/personalization/data/repositories/userrepository.dart';
-import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class LocalNotificationService {
@@ -52,7 +48,7 @@ class LocalNotificationService {
         initializationSettings,
         onDidReceiveNotificationResponse: (details) {
           if (details.id == 0) {
-            Get.offAll(NavigationBarScreen());
+            Get.offAll(const NavigationBarScreen());
           }
           if (details.id == 1) {
             if (details.payload != null) {
@@ -83,9 +79,9 @@ class LocalNotificationService {
       // tz.TZDateTime scheduledTime = tz.TZDateTime(
       //     tz.local, now.year, now.month, now.day, time!.hour, time.minute);
       // print("schedule time is $scheduledTime");
-      tz.TZDateTime scheduledTime = now.add(Duration(seconds: 10));
+      tz.TZDateTime scheduledTime = now.add(const Duration(seconds: 10));
       if (scheduledTime.isBefore(now)) {
-        scheduledTime = scheduledTime.add(Duration(days: 1));
+        scheduledTime = scheduledTime.add(const Duration(days: 1));
         print("after day");
       }
       print("Now scheduling");

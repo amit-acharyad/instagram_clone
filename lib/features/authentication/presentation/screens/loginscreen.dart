@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 // TODO: add flutter_svg package
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:instagram_clone/common/widgets/circular_loader.dart';
 import 'package:instagram_clone/features/authentication/controllers/logincontroller.dart';
 import 'package:instagram_clone/features/authentication/presentation/screens/signup.dart';
 import 'package:instagram_clone/utils/constants/colors.dart';
-import 'package:instagram_clone/utils/constants/icons.dart';
 import 'package:instagram_clone/utils/constants/imagestrings.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 
@@ -42,7 +38,7 @@ class Loginscreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                  SignInForm(),
+                  const SignInForm(),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.2),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +80,7 @@ const authOutlineInputBorder = OutlineInputBorder(
 );
 
 class SignInForm extends StatelessWidget {
-  SignInForm({super.key});
+  const SignInForm({super.key});
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -103,7 +99,7 @@ class SignInForm extends StatelessWidget {
                   horizontal: 30,
                   vertical: 16,
                 ),
-                prefixIcon: Icon(Icons.mail),
+                prefixIcon: const Icon(Icons.mail),
                 border: authOutlineInputBorder,
                 enabledBorder: authOutlineInputBorder,
                 focusedBorder: authOutlineInputBorder.copyWith(
@@ -125,8 +121,8 @@ class SignInForm extends StatelessWidget {
                       horizontal: 24,
                       vertical: 16,
                     ),
-                    prefixIcon: Icon(Icons.lock),
-                    suffixIcon: EyeSlash(),
+                    prefixIcon: const Icon(Icons.lock),
+                    suffixIcon: const EyeSlash(),
                     border: authOutlineInputBorder,
                     enabledBorder: authOutlineInputBorder,
                     focusedBorder: authOutlineInputBorder.copyWith(
@@ -151,8 +147,8 @@ class SignInForm extends StatelessWidget {
                 ),
               ),
               child: loginController.loggingIn.value
-                  ? Text("Logging in...")
-                  : Text("Log In"),
+                  ? const Text("Logging in...")
+                  : const Text("Log In"),
             ),
           )
         ],
@@ -172,12 +168,12 @@ class EyeSlash extends StatelessWidget {
               onPressed: () {
                 loginController.toggleShowHide();
               },
-              icon: Text("Show"))
+              icon: const Text("Show"))
           : IconButton(
               onPressed: () {
                 loginController.toggleShowHide();
               },
-              icon: Text("Hide"))),
+              icon: const Text("Hide"))),
     );
   }
 }
@@ -226,7 +222,7 @@ class NoAccountText extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () => Get.to(() => SignupScreen()),
-          child: Text(
+          child: const Text(
             "Sign Up",
             style: TextStyle(
               color: Colors.blue,

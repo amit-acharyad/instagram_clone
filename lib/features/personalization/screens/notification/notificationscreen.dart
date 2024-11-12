@@ -40,7 +40,7 @@ class NotificationScreen extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         reverse: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           final notification = snapshot.data?[index];
@@ -48,7 +48,7 @@ class NotificationScreen extends StatelessWidget {
                               notificationModel: notification);
                         });
                   }
-                  return Text("Not null");
+                  return const Text("Not null");
                 })),
       ),
     );

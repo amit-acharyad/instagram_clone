@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
@@ -13,11 +10,9 @@ import 'package:instagram_clone/firebase_options.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:instagram_clone/app.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
-import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 import 'package:instagram_clone/localNotification.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
 // Future<void> _firebaseMessagingBackgroundHandler(
 //     RemoteMessage remoteMessage) async {

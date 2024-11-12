@@ -6,14 +6,12 @@ import 'package:instagram_clone/features/authentication/data/authenticationrepos
 import 'package:instagram_clone/features/personalization/controllers/messagecontroller.dart';
 import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postuploader.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/profileimagewidget.dart';
 import 'package:instagram_clone/utils/constants/colors.dart';
-import 'package:instagram_clone/utils/constants/enums.dart';
 
 import 'chatscreen.dart';
 
 class MessageTile extends StatelessWidget {
-  MessageTile({super.key, required this.user, required this.message});
+  const MessageTile({super.key, required this.user, required this.message});
   final UserModel? user;
   final MessageModel message;
 
@@ -45,7 +43,7 @@ class MessageTile extends StatelessWidget {
                           .copyWith(color: AppColors.darkerGrey)
                       : Theme.of(context).textTheme.titleSmall,
                 )),
-            Spacer(),
+            const Spacer(),
             Flexible(
                 flex: 2,
                 child: Text(
@@ -63,7 +61,7 @@ class MessageTile extends StatelessWidget {
           ],
         ),
         trailing:
-            IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt_outlined)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.camera_alt_outlined)),
         onTap: () {
           if ((message.receiverId ==
               AuthenticationRepository.instance.authUser!.uid)) {

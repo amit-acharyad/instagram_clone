@@ -23,7 +23,7 @@ class AddContentScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
             vertical: AppSizes.appBarHeight, horizontal: AppSizes.appBarHeight),
         child: Center(
           child: Container(
@@ -37,20 +37,20 @@ class AddContentScreen extends StatelessWidget {
                     "Post",
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
-                  title: Icon(Icons.list),
+                  title: const Icon(Icons.list),
                   onTap: () async {
                     final XFile? image = await ImagePicker()
                         .pickImage(source: ImageSource.gallery);
                     print(image);
                     final images = [image];
                     postcontroller.image.assignAll(images);
-                    Get.to(AddPost());
+                    Get.to(const AddPost());
                   },
                 ),
                 ListTile(
                   leading: Text("Story",
                       style: Theme.of(context).textTheme.labelLarge),
-                  title: Icon(Icons.circle),
+                  title: const Icon(Icons.circle),
                   onTap: () async {
                     await storycontroller.uploadStory();
                   },
@@ -67,7 +67,7 @@ class AddContentScreen extends StatelessWidget {
                   if (reelcontroller.isUploadingReel.value ||
                       postcontroller.isUploadingPost.value ||
                       storycontroller.isUploadingStory.value) {
-                    return Center(
+                    return const Center(
                       child: SizedBox(
                         height: 80,
                         width: 80,
@@ -75,7 +75,7 @@ class AddContentScreen extends StatelessWidget {
                       ),
                     );
                   } else {
-                    return SizedBox();
+                    return const SizedBox();
                   }
                 })
               ],
@@ -88,6 +88,8 @@ class AddContentScreen extends StatelessWidget {
 }
 
 class UploadMenu extends StatelessWidget {
+  const UploadMenu({super.key});
+
   @override
   Widget build(BuildContext context) {
     final isDark = AppHelperFunctions.isDarkMode(context);
@@ -111,7 +113,7 @@ class UploadMenu extends StatelessWidget {
                   print(image);
                   final images = [image];
                   postcontroller.image.assignAll(images);
-                  Get.to(AddPost());
+                  Get.to(const AddPost());
                 },
                 isLoading: postcontroller
                     .isUploadingPost, // Pass isLoading to UploadOption
@@ -147,7 +149,7 @@ class UploadOption extends StatelessWidget {
   final VoidCallback onTap;
   final RxBool isLoading; // Add isLoading bool
 
-  const UploadOption({
+  const UploadOption({super.key, 
     required this.icon,
     required this.label,
     required this.onTap,
@@ -164,7 +166,7 @@ class UploadOption extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.darkerGrey,
                 ),
@@ -175,22 +177,23 @@ class UploadOption extends StatelessWidget {
               ),
               Obx(() {
                 if (isLoading
-                    .value) // Show circular progress indicator if isLoading is true
-                  return Positioned.fill(
+                    .value) {
+                  // Show circular progress indicator if isLoading is true
+                  return const Positioned.fill(
                     child: Center(
                       child: CircularProgressIndicator(
                         color: Colors.blue, // Customize progress indicator color
                       ),
                     ),
                   );
-                else {
-                  return SizedBox();
+                } else {
+                  return const SizedBox();
                 }
               })
             ],
           ),
           const SizedBox(height: 8.0),
-          Spacer(),
+          const Spacer(),
           Text(
             label,
             style: const TextStyle(

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InstagramGradientIcon extends StatelessWidget {
-  InstagramGradientIcon({required this.icon});
+  const InstagramGradientIcon({super.key, required this.icon});
   final IconData icon;
   @override
   Widget build(BuildContext context) {
     return ShaderMask(
       shaderCallback: (Rect bounds) {
-        return LinearGradient(
+        return const LinearGradient(
           colors: [
             Color(0xFFF58529), // Instagram gradient colors
             Color(0xFFDD2A7B),

@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:instagram_clone/data/models/commentModel.dart';
 import 'package:instagram_clone/data/models/followmodel.dart';
 import 'package:instagram_clone/data/models/notificationModel.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
-import 'package:instagram_clone/features/personalization/controllers/notificationController.dart';
 import 'package:instagram_clone/features/personalization/controllers/postcontroller.dart';
 import 'package:rxdart/rxdart.dart';
 

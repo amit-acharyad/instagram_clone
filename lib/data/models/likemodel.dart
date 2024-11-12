@@ -9,7 +9,7 @@ class LikeModel {
       QueryDocumentSnapshot<Map<String, dynamic>> document) {
     if (document.exists) {
       final data = document.data();
-      return LikeModel(postId: data?['postId'], userId: data?['userId']);
+      return LikeModel(postId: data['postId'], userId: data['userId']);
     } else {
       return LikeModel.empty();
     }

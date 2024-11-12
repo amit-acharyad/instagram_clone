@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/data/repositories/likerepository.dart';
-import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 
 class LikeController extends GetxController {
   static LikeController get instance => Get.find();

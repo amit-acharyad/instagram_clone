@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:instagram_clone/data/models/storymodel.dart';
-import 'package:instagram_clone/data/repositories/storyrepository.dart';
 import 'package:instagram_clone/features/personalization/controllers/storycontroller.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/profileimagewidget.dart';
@@ -62,7 +59,7 @@ class Stories extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 8), // Adds space between the image and text
-                Padding(padding: EdgeInsets.only(left: 15), child: const Text("Your Story")),
+                const Padding(padding: EdgeInsets.only(left: 15), child: Text("Your Story")),
               ],
             ),
           ),
@@ -75,20 +72,20 @@ class Stories extends StatelessWidget {
               itemCount: 2,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return StreamBuilder(
                     stream: storycontroller.storyStreams[index],
                     builder: (context, snapshot) {
                       int i = index;
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return StoriesShimmer();
+                        return const StoriesShimmer();
                       }
                       if (!snapshot.hasData) {
-                        return SizedBox();
+                        return const SizedBox();
                       }
                       if (snapshot.hasError) {
-                        return Text("Error");
+                        return const Text("Error");
                       }
                       final data = snapshot.data;
                       return SizedBox(
@@ -109,7 +106,7 @@ class Stories extends StatelessWidget {
                                         ? StoryStatus.notseen
                                         : StoryStatus.seen,
                                   ),
-                                  Text('${story.userName}')
+                                  Text(story.userName)
                                 ],
                               );
                             }),

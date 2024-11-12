@@ -31,7 +31,7 @@ class UserRepository extends GetxController {
     } on PlatformException catch (e) {
       print("error while saving");
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       print("error while saving");
       throw "Something went Wrong please try again later..";
     }
@@ -48,7 +48,7 @@ class UserRepository extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }
@@ -82,7 +82,7 @@ class UserRepository extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }
@@ -102,7 +102,7 @@ class UserRepository extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }

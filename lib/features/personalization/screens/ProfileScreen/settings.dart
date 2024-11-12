@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -10,7 +9,6 @@ import 'package:instagram_clone/utils/constants/enums.dart';
 import 'package:instagram_clone/utils/constants/sizes.dart';
 import 'package:workmanager/workmanager.dart';
 
-import '../../data/models/usermodel.dart';
 
 const taskName = "usershowtask";
 
@@ -21,6 +19,7 @@ class SettingsScreen extends StatelessWidget {
       AppSettingController.instance;
   @override
   final LoginController loginController = Get.put(LoginController());
+  @override
   Widget build(BuildContext context) {
     
     return Scaffold(
@@ -32,39 +31,39 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              leading: FaIcon(FontAwesomeIcons.globe),
+              leading: const FaIcon(FontAwesomeIcons.globe),
               title: Text(AppLocalizations.of(context).language),
               onTap: () {
                 _showBottomModalSheetLanguage(context);
               },
             ),
             ListTile(
-              leading: FaIcon(Icons.mode),
+              leading: const FaIcon(Icons.mode),
               title: Text(AppLocalizations.of(context).theme),
               onTap: () {
                 _showBottomModalSheetMode(context);
               },
             ),
             ListTile(
-              leading: Text("test"),
-              title: Text("Test WorkManager"),
+              leading: const Text("test"),
+              title: const Text("Test WorkManager"),
               onTap: () async {
                 
                 await Workmanager().registerPeriodicTask(taskName, taskName,
-                    frequency: Duration(minutes: 15),
-                    initialDelay: Duration(seconds: 10));
+                    frequency: const Duration(minutes: 15),
+                    initialDelay: const Duration(seconds: 10));
               },
             ),
             ListTile(
-              leading: Text("testCAncel"),
-              title: Text("Test WorkManager CAncel task"),
+              leading: const Text("testCAncel"),
+              title: const Text("Test WorkManager CAncel task"),
               onTap: () async {
                 await Workmanager().cancelAll();
               },
             ),
             ListTile(
-              leading: FaIcon(FontAwesomeIcons.clock),
-              title: Text("Schedule Reminder"),
+              leading: const FaIcon(FontAwesomeIcons.clock),
+              title: const Text("Schedule Reminder"),
               onTap: () async {
                 TimeOfDay? time = await showTimePicker(
                     context: context, initialTime: TimeOfDay.now());
@@ -74,7 +73,7 @@ class SettingsScreen extends StatelessWidget {
                   Get.showSnackbar(GetSnackBar(
                     title: "Reminder SChedueld",
                     message: "Succesfully schedule for ${time.hour}",
-                    duration: Duration(seconds: 2),
+                    duration: const Duration(seconds: 2),
                   ));
                 } else {
                   print("time not selected");
@@ -82,12 +81,12 @@ class SettingsScreen extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
               onTap: loginController.logout,
             ),
             loginController.logginOut.value
-                ? Center(
+                ? const Center(
                     child: Row(
                       children: [
                         Text("Logging Out"),
@@ -99,7 +98,7 @@ class SettingsScreen extends StatelessWidget {
                       ],
                     ),
                   )
-                : SizedBox()
+                : const SizedBox()
           ],
         ),
       ),
@@ -111,7 +110,7 @@ class SettingsScreen extends StatelessWidget {
         elevation: AppSizes.cardElevation,
         context: context,
         builder: (context) {
-          return Container(
+          return SizedBox(
               height: 100,
               child: Column(
                 children: [
@@ -126,7 +125,7 @@ class SettingsScreen extends StatelessWidget {
                           }
                         },
                       ),
-                      Text('English'),
+                      const Text('English'),
                     ],
                   ),
                   Row(
@@ -140,7 +139,7 @@ class SettingsScreen extends StatelessWidget {
                           }
                         },
                       ),
-                      Text('नेपाली'),
+                      const Text('नेपाली'),
                     ],
                   ),
                 ],
@@ -223,9 +222,9 @@ class AppSettingController extends GetxController {
   void updateLanguage(Languages language) {
     currentLanguage.value = language;
     if (language == Languages.english) {
-      Get.updateLocale(Locale('en', 'US'));
+      Get.updateLocale(const Locale('en', 'US'));
     } else {
-      Get.updateLocale(Locale('ne', 'NP'));
+      Get.updateLocale(const Locale('ne', 'NP'));
     }
   }
   void updateThemeMode(AppThemes mode) {

@@ -1,6 +1,4 @@
-import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -12,7 +10,6 @@ import 'package:instagram_clone/features/authentication/presentation/screens/log
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 import 'package:instagram_clone/features/personalization/screens/navigationscreen.dart';
 import 'package:instagram_clone/utils/popups/loaders.dart';
-import 'package:path_provider/path_provider.dart';
 
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
@@ -35,9 +32,9 @@ class AuthenticationRepository extends GetxController {
     if (storage.read("isLoggedIn") == true) {
       final controller = Get.put(UserController());
       await controller.fetchUserDetails();
-      Get.offAll(NavigationBarScreen());
+      Get.offAll(const NavigationBarScreen());
     } else {
-      Get.offAll(Loginscreen());
+      Get.offAll(const Loginscreen());
     }
   }
 
@@ -52,25 +49,25 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseAuthException catch (e) {
       Get.showSnackbar(GetSnackBar(
         title: "Error logging in",
-        message: "${e.toString()}",
+        message: e.toString(),
       ));
       throw AppFirebaseAuthException(e.code);
     } on FirebaseException catch (e) {
       Get.showSnackbar(GetSnackBar(
         title: "Error logging in",
-        message: "${e.toString()}",
+        message: e.toString(),
       ));
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       Get.showSnackbar(GetSnackBar(
         title: "Error logging in",
-        message: "${e.toString()}",
+        message: e.toString(),
       ));
       throw AppPlatformException(e.code);
     } on Error catch (e) {
       Get.showSnackbar(GetSnackBar(
         title: "Error logging in",
-        message: "${e.toString()}",
+        message: e.toString(),
       ));
       throw "Something went Wrong please try again later..";
     }
@@ -85,7 +82,7 @@ class AuthenticationRepository extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }
@@ -99,7 +96,7 @@ class AuthenticationRepository extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }
@@ -180,7 +177,7 @@ class AuthenticationRepository extends GetxController {
       throw AppFirebaseException(e.code);
     } on PlatformException catch (e) {
       throw AppPlatformException(e.code);
-    } on Error catch (e) {
+    } on Error {
       throw "Something went Wrong please try again later..";
     }
   }

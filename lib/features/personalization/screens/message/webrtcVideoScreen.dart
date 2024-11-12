@@ -1,15 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/data/models/videocallModel.dart';
-import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/features/personalization/controllers/webRtcVideoController.dart';
 import 'package:instagram_clone/features/personalization/controllers/webRtcVideoService.dart';
 import 'package:instagram_clone/features/personalization/screens/navigationscreen.dart';
-import 'package:instagram_clone/utils/constants/sizes.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 
 class WebRtcVideoScreen extends StatefulWidget {
@@ -100,8 +97,8 @@ class _WebRtcVideoScreenState extends State<WebRtcVideoScreen> {
       // if (durationOfCall.value.inMinutes == 1 &&
 
       DateTime startTime = DateTime.now();
-      timer = Timer.periodic(Duration(seconds: 1), (timer) {
-        durationOfCall.value = DateTime.now().difference(startTime!);
+      timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        durationOfCall.value = DateTime.now().difference(startTime);
         print(durationOfCall.value);
       });
       checkRemoteStreamAfterTimeout();
@@ -111,7 +108,7 @@ class _WebRtcVideoScreenState extends State<WebRtcVideoScreen> {
   }
 
   void checkRemoteStreamAfterTimeout() {
-    Future.delayed(Duration(seconds: 20), () {
+    Future.delayed(const Duration(seconds: 20), () {
       // If the remote stream is still null, end the call
       print("delay 20 sec obver");
       print("${remoteVideo.srcObject}");
@@ -129,6 +126,7 @@ class _WebRtcVideoScreenState extends State<WebRtcVideoScreen> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -169,7 +167,7 @@ class _WebRtcVideoScreenState extends State<WebRtcVideoScreen> {
                     alignment: Alignment.topRight,
                     child: IconButton.filled(
                         onPressed: () {
-                          Get.offAll(NavigationBarScreen());
+                          Get.offAll(const NavigationBarScreen());
                         },
                         icon: const Icon(Icons.close_outlined)),
                   ),
@@ -250,7 +248,7 @@ class _WebRtcVideoScreenState extends State<WebRtcVideoScreen> {
                       onTap: () async {
                         await onEndCall();
                       },
-                      child: CircleAvatar(
+                      child: const CircleAvatar(
                         backgroundColor: Colors.red,
                         radius: 30, // Adjust the radius as needed
                         child: Icon(
@@ -303,7 +301,7 @@ class _WebRtcVideoScreenState extends State<WebRtcVideoScreen> {
             .updateDocStatus(widget.videoCall!.initiatorId, status['2']);
       }
 
-      Get.offAll(NavigationBarScreen());
+      Get.offAll(const NavigationBarScreen());
     } catch (e) {
       throw "Could not end call${e.toString()}";
     }
@@ -311,7 +309,7 @@ class _WebRtcVideoScreenState extends State<WebRtcVideoScreen> {
 }
 
 class ControlButtons extends StatelessWidget {
-  ControlButtons(
+  const ControlButtons(
       {super.key,
       required this.muted,
       required this.onEndCall,
@@ -327,7 +325,7 @@ class ControlButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         IconButton(
-            icon: muted ? Icon(Icons.mic_off) : Icon(Icons.mic),
+            icon: muted ? const Icon(Icons.mic_off) : const Icon(Icons.mic),
             color: Colors.green,
             onPressed: () => onMuteToggle),
         ElevatedButton(

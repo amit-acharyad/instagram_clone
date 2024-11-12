@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/data/models/reelModel.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
-import 'package:instagram_clone/utils/helpers/helper_functions.dart';
-import 'package:instagram_clone/utils/popups/loaders.dart';
 
 class Reelrepository extends GetxController {
   static Reelrepository get instance => Get.find();

@@ -1,12 +1,7 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:instagram_clone/features/personalization/data/repositories/userrepository.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/homescreen.dart';
 import 'package:instagram_clone/features/personalization/screens/navigationscreen.dart';
 
 import '../../../../data/models/videocallModel.dart';
@@ -17,7 +12,7 @@ class IncomingCallScreen extends StatelessWidget {
   final VideoCallModel videoCall;
   final AudioPlayer audioPlayer = AudioPlayer();
 
-  IncomingCallScreen({required this.videoCall});
+  IncomingCallScreen({super.key, required this.videoCall});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +45,7 @@ class IncomingCallScreen extends StatelessWidget {
                 Text(caller.name, style: const TextStyle(fontSize: 20)),
                 IconButton(
                     onPressed: () {
-                      Get.to(NavigationBarScreen());
+                      Get.to(const NavigationBarScreen());
                     },
                     icon:const Icon(Icons.home)),
                 const SizedBox(height: 20),
@@ -59,9 +54,9 @@ class IncomingCallScreen extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () => receiveCall(),
-                      child: const Icon(Icons.call, color: Colors.white),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green),
+                      child: const Icon(Icons.call, color: Colors.white),
                     ),
                     ElevatedButton(
                       onPressed: () async {
@@ -71,9 +66,9 @@ class IncomingCallScreen extends StatelessWidget {
                           Get.back();
                         });
                       },
-                      child: const Icon(Icons.call_end, color: Colors.white),
                       style:
                           ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                      child: const Icon(Icons.call_end, color: Colors.white),
                     ),
                   ],
                 ),

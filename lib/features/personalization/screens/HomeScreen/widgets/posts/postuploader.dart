@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:instagram_clone/data/models/postmodel.dart';
-import 'package:instagram_clone/features/personalization/screens/notification/notification_tile.dart';
 
 import '../../../../../../common/styles/dateTimeformatter.dart';
 import '../../../../../../common/widgets/shimmer.dart';
@@ -29,10 +27,10 @@ class PostUploaderDetails extends StatelessWidget {
         future: UserRepository.instance.fetchUserWithGivenId(userId),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Text("No data");
+            return const Text("No data");
           }
           if (snapshot.hasError) {
-            return Text("error");
+            return const Text("error");
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return AppShimmerEffect(
@@ -45,21 +43,21 @@ class PostUploaderDetails extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: AppSizes.spaceBtwItems),
-                child: Container(
+                child: SizedBox(
                     height: 50,
                     width: 50,
                     child: Center(
                         child: PostUploader(
                       size: 20,
-                      image: user.value!.photoUrl,
+                      image: user.value.photoUrl,
                     ))),
               ),
-              Obx(() => Text("${user.value!.name}")),
+              Obx(() => Text(user.value.name)),
               Text("   ${formatTimeDifference(time.toDate())}"),
-              Spacer(),
+              const Spacer(),
               IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     FontAwesomeIcons.ellipsisVertical,
                     size: AppSizes.iconMd,
                   ))
@@ -69,7 +67,7 @@ class PostUploaderDetails extends StatelessWidget {
   }
 }
 class PostUploader extends StatelessWidget {
-  PostUploader({super.key, required this.size, required this.image});
+  const PostUploader({super.key, required this.size, required this.image});
 
   final String image; // Use final for immutability
   final double size;

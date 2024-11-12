@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'dart:core';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -62,7 +61,7 @@ class WebrtcVideoService {
         }
       });
       roomRef.collection('calleeCandidates').snapshots().listen((snapshots) {
-        snapshots.docChanges.forEach((change) {
+        for (var change in snapshots.docChanges) {
           if (change.type == DocumentChangeType.added) {
             Map<String, dynamic> data =
                 change.doc.data() as Map<String, dynamic>;
@@ -70,7 +69,7 @@ class WebrtcVideoService {
             peerConnection?.addCandidate(RTCIceCandidate(
                 data['candidate'], data['sdpMid'], data["sdpMLineIndex"]));
           }
-        });
+        }
       });
       print("room with id $roomId created");
       return roomId;
@@ -93,10 +92,6 @@ class WebrtcVideoService {
         });
         var calleeCandidateCollection = roomRef.collection("calleeCandiates");
         peerConnection!.onIceCandidate = (RTCIceCandidate candidate) {
-          if (candidate == null) {
-            print("onIceCandidate: complete!");
-            return;
-          }
           calleeCandidateCollection.add(candidate.toMap());
         };
         peerConnection?.onTrack = (RTCTrackEvent event) {
@@ -115,11 +110,11 @@ class WebrtcVideoService {
         };
         await roomRef.update(roomWithAnswer);
         roomRef.collection("callerCandidates").snapshots().listen((snapshot) {
-          snapshot.docChanges.forEach((document) {
+          for (var document in snapshot.docChanges) {
             var data = document.doc.data() as Map<String, dynamic>;
             peerConnection!.addCandidate(RTCIceCandidate(
                 data["candidate"], data["sdpMid"], data["sdpMLineIndex"]));
-          });
+          }
         });
       }
     } catch (e) {
@@ -147,9 +142,9 @@ class WebrtcVideoService {
       // Check if localVideo.srcObject is not null before proceeding
       if (localVideo.srcObject != null) {
         List<MediaStreamTrack> tracks = localVideo.srcObject!.getTracks();
-        tracks.forEach((track) {
+        for (var track in tracks) {
           track.stop();
-        });
+        }
       } else {
         print("localVideo.srcObject is null");
       }
@@ -179,12 +174,16 @@ class WebrtcVideoService {
         // Delete callee candidates
         var calleeCandidate =
             await roomRef.collection("calleeCandidates").get();
-        calleeCandidate.docs.forEach((doc) => doc.reference.delete());
+        for (var doc in calleeCandidate.docs) {
+          doc.reference.delete();
+        }
 
         // Delete caller candidates
         var callerCandidate =
             await roomRef.collection("callerCandidates").get();
-        callerCandidate.docs.forEach((doc) => doc.reference.delete());
+        for (var doc in callerCandidate.docs) {
+          doc.reference.delete();
+        }
 
         // Delete the room
         await roomRef.delete();
@@ -213,7 +212,7 @@ class WebrtcVideoService {
   void registerPeerConnectionListeners() {
     try {
       peerConnection?.onIceGatheringState = (RTCIceGatheringState state) {
-        print("Ice gathering state changed ${state}");
+        print("Ice gathering state changed $state");
       };
       peerConnection?.onConnectionState = (RTCPeerConnectionState state) {
         print("Connection state changed $state");

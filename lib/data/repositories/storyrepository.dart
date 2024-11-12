@@ -16,7 +16,7 @@ class StoryRepository extends GetxController {
   static StoryRepository get instance => Get.find();
   final UserController userController = Get.put(UserController());
   final storyRef = FirebaseStorage.instance.ref("Story");
-  final timeLimit = DateTime.now().subtract(Duration(hours: 24));
+  final timeLimit = DateTime.now().subtract(const Duration(hours: 24));
   final String user = AuthenticationRepository.instance.authUser!.uid;
   RxBool viewedOwnStory = false.obs;
   Stream<Storymodel> fetchOwnStory() {

@@ -28,7 +28,7 @@ abstract class AppLocalizations {
           context,
           AppLocalizations,
         ) ??
-        _AppLocalizationsNp();
+        const _AppLocalizationsNp();
     return loc;
   }
 

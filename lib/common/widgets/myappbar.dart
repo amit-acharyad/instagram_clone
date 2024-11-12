@@ -6,7 +6,7 @@ import '../../utils/constants/sizes.dart';
 import '../../utils/helpers/helper_functions.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  MyAppBar({super.key, required this.showBackArrow, this.title, this.actions});
+  const MyAppBar({super.key, required this.showBackArrow, this.title, this.actions});
   final bool showBackArrow;
   final Widget? title;
   final List<Widget>? actions;

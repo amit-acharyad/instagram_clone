@@ -3,11 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postuploader.dart';
 
-import '../../../../../../common/widgets/searchbar.dart';
 import '../../../../../../localizations/app_localizations.dart';
-import '../../../../../../utils/constants/enums.dart';
 import '../../../../../../utils/constants/sizes.dart';
-import '../profileimagewidget.dart';
 
 Future<dynamic> showSharePost(BuildContext context) {
   return showModalBottomSheet(
@@ -24,7 +21,7 @@ Future<dynamic> showSharePost(BuildContext context) {
                 // AppSearchbar(),
                 SizedBox(
                   child: ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: 8,
                       shrinkWrap: true,
                       itemBuilder: ((context, index) => DmTile(checkBoxController: userController.users[index],))),
@@ -48,32 +45,32 @@ Future<dynamic> showSharePost(BuildContext context) {
                           children: [
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(FontAwesomeIcons.copy)),
+                                icon: const Icon(FontAwesomeIcons.copy)),
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(FontAwesomeIcons.share)),
+                                icon: const Icon(FontAwesomeIcons.share)),
                             IconButton(
                                 onPressed: () {},
                                 icon:
-                                    Icon(FontAwesomeIcons.facebookMessenger)),
+                                    const Icon(FontAwesomeIcons.facebookMessenger)),
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(FontAwesomeIcons.whatsapp)),
+                                icon: const Icon(FontAwesomeIcons.whatsapp)),
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(FontAwesomeIcons.facebook)),
+                                icon: const Icon(FontAwesomeIcons.facebook)),
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(FontAwesomeIcons.snapchat)),
+                                icon: const Icon(FontAwesomeIcons.snapchat)),
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(FontAwesomeIcons.xTwitter)),
+                                icon: const Icon(FontAwesomeIcons.xTwitter)),
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(FontAwesomeIcons.message)),
+                                icon: const Icon(FontAwesomeIcons.message)),
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(FontAwesomeIcons.threads)),
+                                icon: const Icon(FontAwesomeIcons.threads)),
                           ])));
             } else {
               return BottomAppBar(
@@ -95,7 +92,7 @@ Future<dynamic> showSharePost(BuildContext context) {
                                 FloatingLabelBehavior.never),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: AppSizes.spaceBtwItems / 2,
                     ),
                     SizedBox(
@@ -139,14 +136,14 @@ class UserController extends GetxController {
 }
 
 class DmTile extends StatelessWidget {
-  DmTile({super.key, required this.checkBoxController});
+  const DmTile({super.key, required this.checkBoxController});
   final CheckBoxController checkBoxController;
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: PostUploader(image: '',size: 8,),
-      title: Text('No Next Question(NNQ)'),
-      subtitle: Text('nonextquestion'),
+      leading: const PostUploader(image: '',size: 8,),
+      title: const Text('No Next Question(NNQ)'),
+      subtitle: const Text('nonextquestion'),
       trailing: Obx(
         () => Checkbox(
           value: checkBoxController.checked.value,

@@ -5,8 +5,6 @@ import 'package:instagram_clone/features/personalization/controllers/usercontrol
 import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postuploader.dart';
 
-import '../../../../../../utils/constants/enums.dart';
-import '../profileimagewidget.dart';
 
 class CommentBox extends StatelessWidget {
   CommentBox({
@@ -41,7 +39,7 @@ class CommentBox extends StatelessWidget {
             hintText: 'add a comment',
             suffixIcon: !commentBoxController.commentSend.value
                 ? IconButton(
-                    icon: Icon(Icons.send),
+                    icon: const Icon(Icons.send),
                     onPressed: () async {
                       commentController.addComment(commentBoxController
                           .commentTextController.text

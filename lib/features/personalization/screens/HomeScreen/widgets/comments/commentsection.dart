@@ -8,7 +8,7 @@ import 'package:instagram_clone/features/personalization/screens/HomeScreen/widg
 import '../../../../../../localizations/app_localizations.dart';
 
 class CommentSection extends StatelessWidget {
-  CommentSection({super.key, required this.post});
+  const CommentSection({super.key, required this.post});
   final PostModel post;
 
   @override
@@ -44,7 +44,7 @@ class CommentSection extends StatelessWidget {
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               reverse: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
                                 final comment = snapshot.data?[index];
                                 return SingleComment(comment: comment);
@@ -54,7 +54,7 @@ class CommentSection extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             CommentBox(postId: post.postId)
           ],
         ),

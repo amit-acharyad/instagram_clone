@@ -1,10 +1,8 @@
 import 'dart:core';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/data/models/messageModel.dart';
 import 'package:instagram_clone/data/repositories/messagerepository.dart';
-import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
 
 import '../../authentication/data/authenticationrepository.dart';
 
@@ -23,7 +21,7 @@ class MessageController extends GetxController {
     try {
       // Get the first stream of friends or users
       final stream1 = messageRepository.getMessageFriends();
-      print("sream1 ${stream1} ");
+      print("sream1 $stream1 ");
       // Use await forEach to handle the stream asynchronously
       await stream1.forEach((friends) async {
         print("freinds are${friends.length} ");

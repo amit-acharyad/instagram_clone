@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/data/repositories/commentrepository.dart';
-import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 import 'package:instagram_clone/utils/popups/loaders.dart';
 
@@ -14,11 +13,6 @@ class CommentController extends GetxController {
   final String postId;
   CommentController({required this.postId});
   final UserController userController = Get.put(UserController());
-  @override
-  void onInit() {
-    super.onInit();
-  
-  }
    Stream<List<CommentModel>> get commentStream=>commentRepository.fetchComments(postId);
 
  

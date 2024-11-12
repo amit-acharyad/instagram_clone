@@ -9,7 +9,6 @@ import 'package:instagram_clone/data/models/postmodel.dart';
 import 'package:instagram_clone/data/repositories/postrepository.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/features/personalization/controllers/likecontroller.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/like.dart';
 import 'package:instagram_clone/features/personalization/screens/navigationscreen.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 import 'package:instagram_clone/utils/popups/loaders.dart';
@@ -51,7 +50,7 @@ class Postcontroller extends GetxController {
       await postCollection.doc(post.postId).set(post.toJson());
       AppLoaders.successSnackBar(
           title: "Post added Successfully", message: "All good mate");
-      Get.to(NavigationBarScreen());
+      Get.to(const NavigationBarScreen());
     } catch (e) {
       AppLoaders.errorSnackBar(title: "Error", message: "Something went Wrong");
       throw "Something went Wromg!!";

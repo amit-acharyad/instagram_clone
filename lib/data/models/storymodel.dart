@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 
 class Storymodel {
@@ -41,12 +39,12 @@ class Storymodel {
     if (document.exists) {
       final data = document.data();
       return Storymodel(
-          userImage: data?['userImage'],
-          storyId: data?['storyId'],
-          storyImage: data?['storyImage'],
-          uploadTime: data?['uploadTime'],
-          userId: data?['userId'],
-          userName: data?['userName']);
+          userImage: data['userImage'],
+          storyId: data['storyId'],
+          storyImage: data['storyImage'],
+          uploadTime: data['uploadTime'],
+          userId: data['userId'],
+          userName: data['userName']);
     } else {
       print("Returning empty");
       return Storymodel.empty();

@@ -4,8 +4,6 @@ import 'package:instagram_clone/common/widgets/myappbar.dart';
 import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/posts/postuploader.dart';
 import 'package:instagram_clone/localizations/app_localizations.dart';
-import 'package:instagram_clone/features/personalization/screens/HomeScreen/widgets/profileimagewidget.dart';
-import 'package:instagram_clone/utils/constants/enums.dart';
 import 'package:instagram_clone/utils/constants/sizes.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 
@@ -31,7 +29,7 @@ class EditProfile extends StatelessWidget {
                 child: PostUploader(size: 30,image: userController.user.value.photoUrl,),
               ),
               TextButton(
-                child: Text('Edit Picture',
+                child: const Text('Edit Picture',
                     style: TextStyle(
                         color: Colors.blue, fontWeight: FontWeight.bold)),
                 onPressed: () {
@@ -53,7 +51,7 @@ class EditProfile extends StatelessWidget {
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(
                                       AppSizes.inputFieldRadius),
-                                  borderSide: BorderSide(color: Colors.blue))),
+                                  borderSide: const BorderSide(color: Colors.blue))),
                         ),
                       ),
                       Padding(
@@ -67,7 +65,7 @@ class EditProfile extends StatelessWidget {
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(
                                       AppSizes.inputFieldRadius),
-                                  borderSide: BorderSide(color: Colors.blue))),
+                                  borderSide: const BorderSide(color: Colors.blue))),
                         ),
                       ),
                       Padding(
@@ -81,7 +79,7 @@ class EditProfile extends StatelessWidget {
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(
                                       AppSizes.inputFieldRadius),
-                                  borderSide: BorderSide(color: Colors.blue))),
+                                  borderSide: const BorderSide(color: Colors.blue))),
                         ),
                       ),
                       DropdownButtonFormField(
@@ -108,7 +106,7 @@ class EditProfile extends StatelessWidget {
               onPressed: () {
                 userController.updateUser();
               },
-              child: Text(
+              child: const Text(
                 "Save",
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -119,18 +117,18 @@ class EditProfile extends StatelessWidget {
   _showModalbottomSheer(context) {
     showModalBottomSheet(
         context: context,
-        builder: (context) => Container(
+        builder: (context) => SizedBox(
               height: AppHelperFunctions.screenHeight(context) * 0.3,
               child: Column(
                 children: [
                   ListTile(
-                    leading: Icon(FontAwesomeIcons.image),
-                    title: Text("New Profile Picture"),
+                    leading: const Icon(FontAwesomeIcons.image),
+                    title: const Text("New Profile Picture"),
                     onTap: ()async {
                      await userController.uploadImage();
                     },
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(
                       Icons.delete,
                       color: Colors.red,

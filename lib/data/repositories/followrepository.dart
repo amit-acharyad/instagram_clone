@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/data/models/followmodel.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
-import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
 
 class Followrepository extends GetxController {
   // RxList<String> followers = [''].obs;

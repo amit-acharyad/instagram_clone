@@ -3,10 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/common/widgets/myappbar.dart';
 import 'package:instagram_clone/features/personalization/controllers/postcontroller.dart';
-import 'package:instagram_clone/utils/constants/enums.dart';
 import 'package:instagram_clone/utils/constants/sizes.dart';
 
 class AddPost extends StatelessWidget {
+  const AddPost({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class AddPost extends StatelessWidget {
                             FileImage(File(Postcontroller.instance.image[0]!.path)),
                         fit: BoxFit.contain)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: AppSizes.spaceBtwItems,
               ),
               Text(
@@ -59,7 +60,7 @@ class AddPost extends StatelessWidget {
                 controller: Postcontroller.instance.captionController,
                 maxLines: 2,
                 maxLength: 50,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: "Your Caption Here",
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     enabledBorder: OutlineInputBorder(

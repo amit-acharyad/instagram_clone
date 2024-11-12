@@ -26,12 +26,12 @@ class MessageModel {
     if (documentSnapshot.exists) {
       final data = documentSnapshot.data();
       return MessageModel(
-          seen: data?["seen"],
-          messageId: data?['messageId'],
-          message: data?["message"],
-          senderId: data?['senderId'],
-          receiverId: data?['receiverId'],
-          timeStamp: data?['timeStamp']);
+          seen: data["seen"],
+          messageId: data['messageId'],
+          message: data["message"],
+          senderId: data['senderId'],
+          receiverId: data['receiverId'],
+          timeStamp: data['timeStamp']);
     } else {
       return MessageModel.empty();
     }

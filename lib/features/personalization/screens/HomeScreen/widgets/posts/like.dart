@@ -5,7 +5,7 @@ import 'package:instagram_clone/features/authentication/data/authenticationrepos
 import 'package:instagram_clone/features/personalization/controllers/likecontroller.dart';
 
 class LikeButton extends StatelessWidget {
-  LikeButton({
+  const LikeButton({
     super.key,
     required this.likeButtonController,
   });

@@ -23,11 +23,11 @@ class CommentModel {
     if (document.exists) {
       final data = document.data();
       return CommentModel(
-          postId: data?['postId'],
-          userId: data?['userId'],
-          time: data?['time'],
-          comment: data?['comment'],
-          commentId: data?['commentId']);
+          postId: data['postId'],
+          userId: data['userId'],
+          time: data['time'],
+          comment: data['comment'],
+          commentId: data['commentId']);
     } else {
       return CommentModel.empty();
     }
