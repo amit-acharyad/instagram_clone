@@ -15,11 +15,11 @@ class VideoCall extends StatefulWidget {
 class _VideoCallState extends State<VideoCall> {
   final AgoraClient client = AgoraClient(
       agoraConnectionData: AgoraConnectionData(
-          appId: "8968a1f23a43418291ffcec57c69c89e",
-          channelName: "videocallinstaclone",
+          appId: "your app Id",
+          channelName: "channelName",
           username: UserController.instance.user.value.name,
           tempToken:
-              "007eJxTYHi7xzx34z3PLjXTXU0mHBu+qkz0m/nmxf5rmzgzzvPHNlxQYLCwNLNINEwzMk40MTYxtDCyNExLS05NNjVPNrNMtrBMtUj+m9YQyMiwtHIFEyMDBIL4wgxlmSmp+cmJOTmZecUlick5+XmpDAwA2vQnKg=="),
+              "agora-token"),
       enabledPermission: [
         Permission.audio,
         Permission.camera,
