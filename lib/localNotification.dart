@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:instagram_clone/data/models/notificationModel.dart';
-import 'package:instagram_clone/features/personalization/screens/message/incomingCallScreen.dart';
-import 'package:instagram_clone/features/personalization/screens/navigationscreen.dart';
+import 'package:instagram_clone/features/notification/data/notificationModel.dart';
+import 'package:instagram_clone/navigationscreen.dart';
 import 'package:instagram_clone/utils/popups/loaders.dart';
-import 'data/models/videocallModel.dart';
-import 'features/personalization/data/repositories/userrepository.dart';
+import 'features/profile/data/repository/userrepository.dart';
 import 'package:timezone/timezone.dart' as tz;
+
+import 'features/videocall/model/videocallModel.dart';
+import 'features/videocall/view/incomingcallScreen.dart';
 
 class LocalNotificationService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -58,7 +59,7 @@ class LocalNotificationService {
               if (videoCallMap != null) {
                 final videoCall = VideoCallModel.fromMap(videoCallMap);
                 print("on click will go to ${videoCall.toJson()}");
-                Get.to(IncomingCallScreen(videoCall: videoCall));
+                Get.to(IncomingCallScreen());
               }
             }
           }

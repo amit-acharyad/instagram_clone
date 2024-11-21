@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:instagram_clone/features/authentication/presentation/screens/loginscreen.dart';
 import 'package:instagram_clone/localizations/app_localizations.dart';
-import 'package:instagram_clone/features/personalization/screens/ProfileScreen/settings.dart';
-import 'package:instagram_clone/features/personalization/screens/navigationscreen.dart';
+import 'package:instagram_clone/features/profile/view/settings.dart';
+import 'package:instagram_clone/navigationscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatelessWidget {

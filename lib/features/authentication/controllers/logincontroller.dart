@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/features/authentication/data/authenticationrepository.dart';
 import 'package:instagram_clone/features/authentication/presentation/screens/loginscreen.dart';
-import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
+import 'package:instagram_clone/features/profile/controller/usercontroller.dart';
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';

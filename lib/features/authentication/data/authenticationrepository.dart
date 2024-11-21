@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:instagram_clone/features/authentication/presentation/screens/loginscreen.dart';
-import 'package:instagram_clone/features/personalization/controllers/usercontroller.dart';
-import 'package:instagram_clone/features/personalization/screens/navigationscreen.dart';
+import 'package:instagram_clone/features/profile/controller/usercontroller.dart';
+import 'package:instagram_clone/navigationscreen.dart';
 import 'package:instagram_clone/utils/popups/loaders.dart';
 
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';

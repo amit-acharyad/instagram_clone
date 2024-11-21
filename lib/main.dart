@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:instagram_clone/features/personalization/data/models/usermodel.dart';
+import 'package:instagram_clone/features/profile/data/model/usermodel.dart';
 import 'package:instagram_clone/firebase_options.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:instagram_clone/app.dart';
