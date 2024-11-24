@@ -22,7 +22,6 @@ class Postcontroller extends GetxController {
   final RxBool isLoadingPosts = false.obs;
   final postCollection = FirebaseFirestore.instance.collection("Posts");
   final postDatabase = FirebaseStorage.instance.ref("Posts/userPosts");
-
   final captionController = TextEditingController();
   late LikeController likeController;
   final Postrepository postrepository = Get.put(Postrepository());
@@ -47,6 +46,7 @@ class Postcontroller extends GetxController {
           commentsCount: 0,
           likesCount: 0,
           postImage: postImage);
+      isUploadingPost.value = true;
       await postCollection.doc(post.postId).set(post.toJson());
       AppLoaders.successSnackBar(
           title: "Post added Successfully", message: "All good mate");
@@ -54,6 +54,8 @@ class Postcontroller extends GetxController {
     } catch (e) {
       AppLoaders.errorSnackBar(title: "Error", message: "Something went Wrong");
       throw "Something went Wromg!!";
+    } finally {
+      isUploadingPost.value = false;
     }
   }
 
@@ -95,11 +97,11 @@ class Postcontroller extends GetxController {
       // Check if the upload was successful
       if (uploadTask.state == TaskState.success) {
         // Get the download URL after successful upload
-        String downloadURL = await postDatabase.child(child.toString()).getDownloadURL();
+        String downloadURL =
+            await postDatabase.child(child.toString()).getDownloadURL();
 
         return downloadURL; // Return the download URL if needed
       } else {
-        print("Upload failed.");
         return 'failed';
       }
     } catch (e) {

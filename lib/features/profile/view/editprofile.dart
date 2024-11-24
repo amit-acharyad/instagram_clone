@@ -26,14 +26,17 @@ class EditProfile extends StatelessWidget {
           child: Column(
             children: [
               Center(
-                child: PostUploader(size: 30,image: userController.user.value.photoUrl,),
+                child: PostUploader(
+                  size: 30,
+                  image: userController.user.value.photoUrl,
+                ),
               ),
               TextButton(
                 child: const Text('Edit Picture',
                     style: TextStyle(
                         color: Colors.blue, fontWeight: FontWeight.bold)),
                 onPressed: () {
-                  _showModalbottomSheer(context);
+                  _showModalbottomSheet(context);
                 },
               ),
               Form(
@@ -51,7 +54,8 @@ class EditProfile extends StatelessWidget {
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(
                                       AppSizes.inputFieldRadius),
-                                  borderSide: const BorderSide(color: Colors.blue))),
+                                  borderSide:
+                                      const BorderSide(color: Colors.blue))),
                         ),
                       ),
                       Padding(
@@ -65,7 +69,8 @@ class EditProfile extends StatelessWidget {
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(
                                       AppSizes.inputFieldRadius),
-                                  borderSide: const BorderSide(color: Colors.blue))),
+                                  borderSide:
+                                      const BorderSide(color: Colors.blue))),
                         ),
                       ),
                       Padding(
@@ -79,7 +84,8 @@ class EditProfile extends StatelessWidget {
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(
                                       AppSizes.inputFieldRadius),
-                                  borderSide: const BorderSide(color: Colors.blue))),
+                                  borderSide:
+                                      const BorderSide(color: Colors.blue))),
                         ),
                       ),
                       DropdownButtonFormField(
@@ -114,7 +120,7 @@ class EditProfile extends StatelessWidget {
     );
   }
 
-  _showModalbottomSheer(context) {
+  _showModalbottomSheet(context) {
     showModalBottomSheet(
         context: context,
         builder: (context) => SizedBox(
@@ -124,8 +130,8 @@ class EditProfile extends StatelessWidget {
                   ListTile(
                     leading: const Icon(FontAwesomeIcons.image),
                     title: const Text("New Profile Picture"),
-                    onTap: ()async {
-                     await userController.uploadImage();
+                    onTap: () async {
+                      await userController.uploadImage();
                     },
                   ),
                   const ListTile(

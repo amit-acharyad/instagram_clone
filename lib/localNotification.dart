@@ -57,8 +57,8 @@ class LocalNotificationService {
               print("payload is ${details.payload}");
               final videoCallMap = jsonDecode(details.payload!);
               if (videoCallMap != null) {
-                final videoCall = VideoCallModel.fromMap(videoCallMap);
-                print("on click will go to ${videoCall.toJson()}");
+                // final videoCall = VideoCallModel.fromMap(videoCallMap);
+                // print("on click will go to ${videoCall.toJson()}");
                 Get.to(IncomingCallScreen());
               }
             }

@@ -13,17 +13,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = AppHelperFunctions.isDarkMode(context);
-    final color = isDark ? AppColors.white : AppColors.dark;
     return AppBar(
-      leading: showBackArrow
-          ? IconButton(
-              onPressed: () => Get.back(),
-              icon: Icon(
-                Icons.arrow_back,
-                color: color,
-              ))
-          : null,
+      automaticallyImplyLeading: showBackArrow,
       title: title,
       actions: actions,
     );

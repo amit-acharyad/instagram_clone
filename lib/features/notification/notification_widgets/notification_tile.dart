@@ -8,7 +8,7 @@ import 'package:instagram_clone/features/profile/data/model/usermodel.dart';
 import 'package:instagram_clone/features/profile/data/repository/userrepository.dart';
 import 'package:instagram_clone/features/posts/view/posts/post.dart';
 import 'package:instagram_clone/features/posts/view/posts/postuploader.dart';
-import 'package:instagram_clone/features/profile/view/othersProfile.dart';
+import 'package:instagram_clone/features/profile/view/otherProfile/othersProfile.dart';
 import 'package:instagram_clone/utils/constants/colors.dart';
 
 import '../../../common/styles/dateTimeformatter.dart';

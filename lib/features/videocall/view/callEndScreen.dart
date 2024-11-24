@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/features/profile/controller/usercontroller.dart';
-
+import '../../../navigationscreen.dart';
 import '../../authentication/data/authenticationrepository.dart';
 import '../../home/homescreen.dart';
 
@@ -23,7 +23,7 @@ class CallEndScreen extends StatelessWidget {
               alignment: Alignment.topRight,
               child: IconButton(
                   onPressed: () {
-                    Get.to(HomeScreen());
+                    Get.to(NavigationBarScreen());
                   },
                   icon: Icon(Icons.cancel_outlined)),
             ),

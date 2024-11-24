@@ -41,7 +41,6 @@ class AddContentScreen extends StatelessWidget {
                   onTap: () async {
                     final XFile? image = await ImagePicker()
                         .pickImage(source: ImageSource.gallery);
-                    print(image);
                     final images = [image];
                     postcontroller.image.assignAll(images);
                     Get.to(const AddPost());
@@ -110,7 +109,6 @@ class UploadMenu extends StatelessWidget {
                 onTap: () async {
                   final XFile? image = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
-                  print(image);
                   final images = [image];
                   postcontroller.image.assignAll(images);
                   Get.to(const AddPost());
@@ -118,14 +116,19 @@ class UploadMenu extends StatelessWidget {
                 isLoading: postcontroller
                     .isUploadingPost, // Pass isLoading to UploadOption
               ),
+              SizedBox(
+                height: 24,
+              ),
               UploadOption(
                 icon: FontAwesomeIcons.circle,
                 label: 'Story',
                 onTap: () async {
-                  print("TApped");
                   await storycontroller.uploadStory();
                 },
                 isLoading: storycontroller.isUploadingStory,
+              ),
+              SizedBox(
+                height: 24,
               ),
               UploadOption(
                 icon: FontAwesomeIcons.film,
@@ -149,7 +152,8 @@ class UploadOption extends StatelessWidget {
   final VoidCallback onTap;
   final RxBool isLoading; // Add isLoading bool
 
-  const UploadOption({super.key, 
+  const UploadOption({
+    super.key,
     required this.icon,
     required this.label,
     required this.onTap,
@@ -176,13 +180,13 @@ class UploadOption extends StatelessWidget {
                 ),
               ),
               Obx(() {
-                if (isLoading
-                    .value) {
+                if (isLoading.value) {
                   // Show circular progress indicator if isLoading is true
                   return const Positioned.fill(
                     child: Center(
                       child: CircularProgressIndicator(
-                        color: Colors.blue, // Customize progress indicator color
+                        color:
+                            Colors.blue, // Customize progress indicator color
                       ),
                     ),
                   );

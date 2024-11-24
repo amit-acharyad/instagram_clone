@@ -6,6 +6,8 @@ import 'package:instagram_clone/features/reel/controller/reelvideocontroller.dar
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 import 'package:video_player/video_player.dart';
 
+import 'singlereelscreen.dart';
+
 class ReelScreen extends StatelessWidget {
   ReelScreen({super.key});
 
@@ -29,6 +31,7 @@ class ReelScreen extends StatelessWidget {
                   tag: UniqueKey().toString());
               return SingleReelScreen(
                   reelVideoController: reelVideoController,
+                  uploaderId: reel.uploaderId,
                   uploaderName: reel.uploaderName);
             }),
       ),
@@ -36,78 +39,3 @@ class ReelScreen extends StatelessWidget {
   }
 }
 
-class SingleReelScreen extends StatelessWidget {
-  const SingleReelScreen(
-      {super.key,
-      required this.reelVideoController,
-      required this.uploaderName});
-  final ReelVideoController reelVideoController;
-  final String uploaderName;
-
-  @override
-  Widget build(BuildContext context) {
-    reelVideoController.initializeReel();
-    return Scaffold(
-      body: Stack(
-        children: [
-          Obx(() => reelVideoController.isInitialized.value
-              ? InkWell(
-                  onTap: () {
-                    reelVideoController.playpause();
-                  },
-                  child: SizedBox(
-                    height: AppHelperFunctions.screenHeight(context),
-                    width: AppHelperFunctions.screenWidth(context),
-                    child: VideoPlayer(reelVideoController.videoPlayerController),
-                  ),
-                )
-              : const Center(
-                  child: CircularProgressIndicator(),
-                )),
-          Positioned(
-              right: 0,
-              bottom: 30,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.favorite_outline)),
-                  const Text("Likes"),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.comment),
-                  ),
-                  const Text("112"),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.share))
-                ],
-              )),
-          Positioned(
-              bottom: 20,
-              left: 5,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const PostUploader(size: 20, image: ''),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(uploaderName),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  SizedBox(
-                      height: 35,
-                      width: 100,
-                      child: OutlinedButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Follow",
-                            style: Theme.of(context).textTheme.bodySmall,
-                          )))
-                ],
-              ))
-        ],
-      ),
-    );
-  }
-}

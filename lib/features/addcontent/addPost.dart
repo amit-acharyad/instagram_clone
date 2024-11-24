@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:instagram_clone/common/widgets/myappbar.dart';
 import 'package:instagram_clone/features/posts/controllers/postcontroller.dart';
 import 'package:instagram_clone/utils/constants/sizes.dart';
 
 class AddPost extends StatelessWidget {
   const AddPost({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +17,18 @@ class AddPost extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () async {
-                print("Pressed Post");
                 await Postcontroller.instance.post();
               },
-              icon: Text(
-                "POST",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(color: Colors.blue),
+              icon: Obx(
+                () => Text(
+                  Postcontroller.instance.isUploadingPost.value
+                      ? "Posting..."
+                      : "POST",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(color: Colors.blue),
+                ),
               ))
         ],
         title: Text(
@@ -45,8 +48,8 @@ class AddPost extends StatelessWidget {
                 width: 400,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image:
-                            FileImage(File(Postcontroller.instance.image[0]!.path)),
+                        image: FileImage(
+                            File(Postcontroller.instance.image[0]!.path)),
                         fit: BoxFit.contain)),
               ),
               const SizedBox(

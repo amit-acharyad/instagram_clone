@@ -65,9 +65,10 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: ColoredBox(
                       color: Colors.green,
-                      child: const SizedBox(
-                        height: 80,
-                        child: Text('Incoming Call'),
+                      child:  SizedBox(
+                        height: 40,
+                        width: AppHelperFunctions.screenWidth(context),
+                        child: Center(child: Text('Incoming Call')),
                       ),
                     ),
                   )

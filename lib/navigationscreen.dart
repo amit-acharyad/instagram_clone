@@ -11,10 +11,9 @@ import 'package:instagram_clone/utils/constants/icons.dart';
 import 'package:instagram_clone/utils/helpers/helper_functions.dart';
 import 'features/addcontent/addcontentscreen.dart';
 import 'features/home/homescreen.dart';
-import 'features/profile/view/profilescreen.dart';
+import 'features/profile/view/ownProfile/profilescreen.dart';
 import 'features/reel/view/reelscreen.dart';
 import 'features/videocall/controller/videoCallChecker.dart';
-import 'features/videocall/model/videocallModel.dart';
 
 class NavigationBarScreen extends StatelessWidget {
   const NavigationBarScreen({super.key});
@@ -22,11 +21,9 @@ class NavigationBarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final NavigationBarController navigationBarController =
         Get.put(NavigationBarController());
-    // final UserController userController = Get.put(UserController());
     VideoCallChecker.getIncomingVideoCall();
 
-    // final WebRTCVideoController webRTCVideoController =
-    //     Get.put(WebRTCVideoController());
+  
     final isDark = AppHelperFunctions.isDarkMode(context);
     final color = isDark ? AppColors.white : AppColors.dark;
     return Scaffold(
@@ -34,13 +31,7 @@ class NavigationBarScreen extends StatelessWidget {
           .screens[navigationBarController.selectedIndex.value]),
       bottomNavigationBar: Obx(
         () {
-          // final user = AuthenticationRepository.instance.authUser!.uid;
 
-          // if (video.initiatorId != user && video.status == "initiated") {
-          //   print("videoCAll value is ${video.initiatorId} ${video.roomId}");
-          //   // Get.to(IncomingCallScreen(videoCall: video));
-          //   // showIncomingCallScreen(context, video);
-          // }
           return BottomNavigationBar(
               type: BottomNavigationBarType.shifting,
               currentIndex: navigationBarController.selectedIndex.value,
